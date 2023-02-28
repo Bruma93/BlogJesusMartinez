@@ -19,20 +19,24 @@ class Comentario extends Model
     ];
 
     public function obtenerComentarios(){
-        return Post::All(); 
+        return Comentario::All(); 
      }
 
      public function obtenerComentarioPorID(){
-        return post::find('id'); 
+        return Comentario::find('id'); 
      }
 
      public function obtenerComentarioPorIdUser(){
-        return Post::find('user_id'); 
+        return Comentario::find('user_id'); 
      }
 
      public function obtenerComentariosPorIdProducto(){
         return Post::find('product_id'); 
      }
+
+/*      public function obtenerComentariosPorIdProducto($product_id){
+        return Comentario::where('product_id',$product_id)->get(); 
+     } */
 
     public function user(){
       return $this->belongsTo(User::class);
