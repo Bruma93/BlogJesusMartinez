@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    Datos del post
+    <h2>Datos del post</h2>
     <hr>
     {{ $post->title }}
     <br>

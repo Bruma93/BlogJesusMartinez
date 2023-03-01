@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    Editar datos del post {{ $post->id }}
+    <h2>Editar datos del post {{ $post->id }}</h2>
     <form action="{{ url('/post/' . $post->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')

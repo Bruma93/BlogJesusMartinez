@@ -15,7 +15,7 @@ class PostController extends Controller
     {
 
         //laravel permite paginar
-        $datos['posts'] = Post::paginate();
+        $datos['posts'] = Post::paginate(20);
  
         return view('post.index', $datos);
     }

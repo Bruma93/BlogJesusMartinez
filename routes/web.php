@@ -4,6 +4,8 @@ use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\Notification;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +38,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('post', PostController::class)->names([
         'index' => 'post.index',
     ]);
+});
+
+Route::get('/email',function(){
+    $mensaje = (new Notification("Jesus"));
+
+    $response = Mail::to("jesus.martinez@escuelaestech.es")->send($mensaje);
 });
 
 

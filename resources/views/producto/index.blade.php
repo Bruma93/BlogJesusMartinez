@@ -15,10 +15,13 @@
             {{ Session::get('mensaje') }}
         </div>
     @endif
-    Listado de productos
-    <a href="{{ url('producto/create') }}" class="btn btn-info">Registrar Producto</a>
+
+    <div class="d-flex justify-content-between">
+        <h2>Listado de productos</h2>
+        <a href="{{ url('producto/create') }}" class="btn btn-info">Registrar Producto</a>
+    </div>
     <hr>
-    <table class="table data-table">
+    <table class="table data-table text-white">
         <thead>
             <tr>
                 <th>#</th>
@@ -38,11 +41,11 @@
                 <td>{{$producto->description}}</td>
                 <td>{{$producto->quantity}}</td>
                 <td>{{$producto->status}}</td>
-                <td>{{$producto->id_seller}}</td>
+                <td>{{$producto->seller_id}}</td>
                 <td>
-                    <div class="btn-group" role="group">
-                        <a href="{{ url('producto/' . $producto->id) }}" class="btn btn-primary">ver</a>
-                        <a href="{{ url('producto/' . $producto->id . '/edit') }}" class="btn btn-warning">editar</a>
+                    <div class="d-flex" role="group">
+                        <a href="{{ url('producto/' . $producto->id) }}" class="btn btn-primary me-3">ver</a>
+                        <a href="{{ url('producto/' . $producto->id . '/edit') }}" class="btn btn-warning me-3">editar</a>
                         <form action="{{url('producto/' . $producto->id) }}" method="post">
                             @csrf
                             {{ method_field('DELETE') }}
@@ -55,7 +58,7 @@
             
         </tbody>
     </table>
-    {!! $productos->links() !!}
+    <!-- {!! $productos->links() !!} -->
 
 </div>
 @endsection

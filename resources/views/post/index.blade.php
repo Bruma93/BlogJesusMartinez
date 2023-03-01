@@ -15,10 +15,12 @@
             {{ Session::get('mensaje') }}
         </div>
     @endif
-    Listado de posts
-    <a href="{{ url('post/create') }}" class="btn btn-info">Registrar Post</a>
+    <div class="d-flex justify-content-between">
+        <h2>Listado de posts</h2>
+        <a href="{{ url('post/create') }}" class="btn btn-info">Registrar Post</a>
+    </div>
     <hr>
-    <table class="table data-table">
+    <table class="table data-table text-white">
         <thead>
             <tr>
                 <th>#</th>
@@ -31,14 +33,14 @@
         <tbody>
             @foreach ($posts as $post)
             <tr>
-                <td>{{ $post->id }}</td>
+                <td>{{$post->id }}</td>
                 <td>{{$post->title}}</td>
                 <td>{{$post->status}}</td>
                 <td>{{$post->user_id}}</td>
                 <td>
-                    <div class="btn-group" role="group">
-                        <a href="{{ url('post/' . $post->id) }}" class="btn btn-primary">ver</a>
-                        <a href="{{ url('post/' . $post->id . '/edit') }}" class="btn btn-warning">editar</a>
+                    <div class="d-flex" role="group">
+                        <a href="{{ url('post/' . $post->id) }}" class="btn btn-primary me-3">ver</a>
+                        <a href="{{ url('post/' . $post->id . '/edit') }}" class="btn btn-warning me-3">editar</a>
                         <form action="{{url('post/' . $post->id) }}" method="post">
                             @csrf
                             {{ method_field('DELETE') }}
@@ -51,17 +53,15 @@
             
         </tbody>
     </table>
-    {!! $posts->links() !!}
+    <!-- {!! $posts->links() !!} -->
 
 </div>
 @endsection
 
 @section('datatable')
 <script>
-    $(document).ready( function () {
-        $('.data-table').DataTable({
-
-        });
-    } );
+    $(document).ready(function () {
+    $('.data-table').DataTable();
+});
 </script>
 @endsection

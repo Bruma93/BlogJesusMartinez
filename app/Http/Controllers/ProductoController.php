@@ -13,7 +13,7 @@ class ProductoController extends Controller
     {
 
         //laravel permite paginar
-        $datos['productos'] = Product::paginate();
+        $datos['productos'] = Product::paginate(20);
  
         return view('producto.index', $datos);
     }

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    datos de producto
+    <h2>Datos de producto</h2>
     <hr>
     {{ $producto->nombre }}
     <br>
