@@ -95,7 +95,9 @@ class PostController extends Controller
     {
         $objetoComentario = new Comentario();
         $comentario = $objetoComentario->obtenerComentariosPorIdProducto($id);
-        Comentario::destroy($comentario->id);
+        //dd($comentario);
+        
+        Comentario::destroy($comentario[0]->id);
         Post::destroy($id);
         
         return redirect('post')->with('mensaje', 'Se ha eliminado el producto #' . $id);

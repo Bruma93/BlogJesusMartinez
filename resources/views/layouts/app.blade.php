@@ -37,7 +37,7 @@
                     <!-- Esta linea está comentada | En Blade se comenta {{-- --}} | Con esta línea, si lo tenemos configurado en el modelo, ejecutaría la función isAdmin()-->{{-- @if( auth::user()->isAdmin() ) --}}
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('alumno.index') }}">{{ __('Alumnos') }}</a>
+                            <!--<a class="nav-link" href="{{ route('home') }}">{{ __('home') }}</a>-->
                         </li>
                     </ul>
                     @endif

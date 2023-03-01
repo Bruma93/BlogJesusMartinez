@@ -73,7 +73,7 @@ class ProductoController extends Controller
         'nombre' => 'required|string|max:250',
         'description' => 'required|string|max:1000',
         'quantity' => 'required|int|max:250',
-        'status' => 'required|int|max:4',
+        'status' => 'required|int',
         'seller_id' => 'required|int',
     ];
 

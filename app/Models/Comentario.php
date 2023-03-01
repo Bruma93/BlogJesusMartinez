@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Comentario as ModelsComentario;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,13 +31,14 @@ class Comentario extends Model
         return Comentario::find('user_id'); 
      }
 
-     public function obtenerComentariosPorIdProducto(){
-        return Post::find('product_id'); 
-     }
+    /* public function obtenerComentariosPorIdProducto($product_id){
+     // Where
+        //return ModelsComentario::find($product_id); 
+     }*/
 
-/*      public function obtenerComentariosPorIdProducto($product_id){
-        return Comentario::where('product_id',$product_id)->get(); 
-     } */
+public function obtenerComentariosPorIdProducto($product_id){
+        return Comentario::where('product_id', '=',$product_id)->get(); 
+     } 
 
     public function user(){
       return $this->belongsTo(User::class);
