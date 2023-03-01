@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Models\Comentario;
-
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -15,14 +15,15 @@ class PostController extends Controller
     {
 
         //laravel permite paginar
-        $datos['posts'] = Post::paginate(20);
+        $datos['posts'] = Post::paginate(100);
  
         return view('post.index', $datos);
     }
 
     public function create()
-    {
-        return view('post.create');
+    {   
+        $user= Auth::user();
+        return view('post.create', compact('user'));
     }
 
     public function store(Request $request)

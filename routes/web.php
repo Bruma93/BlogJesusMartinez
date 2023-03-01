@@ -23,8 +23,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-//Auth::routes();
-
 Auth::routes([/*'register'=>false,*/ 'reset'=>false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -38,13 +36,15 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('post', PostController::class)->names([
         'index' => 'post.index',
     ]);
+
+    Route::get('/email',function(){
+        $mensaje = (new Notification("Jesus"));
+    
+        $response = Mail::to("jesus.martinez@escuelaestech.es")->send($mensaje);
+    });
 });
 
-Route::get('/email',function(){
-    $mensaje = (new Notification("Jesus"));
 
-    $response = Mail::to("jesus.martinez@escuelaestech.es")->send($mensaje);
-});
 
 
 

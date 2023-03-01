@@ -6,6 +6,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 class ProductoController extends Controller
 {
@@ -13,14 +15,15 @@ class ProductoController extends Controller
     {
 
         //laravel permite paginar
-        $datos['productos'] = Product::paginate(20);
+        $datos['productos'] = Product::paginate(100);
  
         return view('producto.index', $datos);
     }
 
     public function create()
     {
-        return view('producto.create');
+        $user = Auth::user();
+        return view('producto.create', compact('user'));
     }
 
 

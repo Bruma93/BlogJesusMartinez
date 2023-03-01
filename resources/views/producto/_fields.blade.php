@@ -26,10 +26,15 @@
     <label for="status">Estatus</label>
     <input type="number" class="form-control" name="status" id="status" value="{{ isset($producto->status) ? $producto->status : old('status') }}">
 </div>
-<div class="form-group mb-3">
+@if($modo == 'Crear')
+    <input type="number" class="form-control" name="seller_id" id="seller_id" value="{{$user->id }}" hidden>
+    @else
+    <div class="form-group mb-3">
     <label for="seller_id">Id del vendedor</label>
-    <input type="number" class="form-control" name="seller_id" id="seller_id" value="{{ isset($producto->seller_id) ? $producto->seller_id : old('seller_id') }}">
+    <input type="number" class="form-control" name="seller_id" id="seller_id" value="{{ isset($producto->seller_id) ? $producto->seller_id :  old('seller_id') }}">
 </div>
+@endif
+
 <div class="mt-5">
     <input type="submit" class="btn btn-primary me-3" value="{{ $modo }} producto">
     <a class="btn btn-success" href="{{ url('producto') }}" >volver</a>
