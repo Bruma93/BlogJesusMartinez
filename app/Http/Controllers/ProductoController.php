@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Comentario;
+
 
 
 class ProductoController extends Controller
@@ -59,8 +61,12 @@ class ProductoController extends Controller
     public function show($id)
     {
         $producto = Product::findOrFail($id);
+        $objetoComentario = new Comentario();
+        $comentarios = $objetoComentario->obtenerComentariosPorIdProducto($id);
 
-        return view('producto.show', compact('producto'));
+        
+
+        return view('producto.show', compact('producto','comentarios'));
     }
 
     public function edit($id)
@@ -97,12 +103,16 @@ class ProductoController extends Controller
 
         $producto = Product::findOrFail($id);
 
-        return view('producto.edit', compact('producto'));
-        return redirect('producto')->with('mensaje', 'Se ha modificiado los datos del producto '.$datosProducto['nombre']);
+        return redirect('producto')->with('mensaje', 'Se ha modificiado los datos del producto '.$producto->nombre);
     }
 
     public function destroy($id)
     {
+        $objetoComentario = new Comentario();
+        $comentario = $objetoComentario->obtenerComentariosPorIdProducto($id);
+        //dd($comentario);
+        
+        Comentario::destroy($comentario[0]->id);
         Product::destroy($id);
         
         return redirect('producto')->with('mensaje', 'Se ha eliminado el producto #' . $id);

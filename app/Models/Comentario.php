@@ -23,12 +23,12 @@ class Comentario extends Model
         return Comentario::All(); 
      }
 
-     public function obtenerComentarioPorID(){
-        return Comentario::find('id'); 
+     public function obtenerComentarioPorID($id){
+         return Comentario::where('id', '=',$id)->get(); 
      }
 
-     public function obtenerComentarioPorIdUser(){
-        return Comentario::find('user_id'); 
+     public function obtenerComentarioPorIdUser($user_id){
+         return Comentario::where('user_id', '=',$user_id)->get(); 
      }
 
     /* public function obtenerComentariosPorIdProducto($product_id){
@@ -36,7 +36,7 @@ class Comentario extends Model
         //return ModelsComentario::find($product_id); 
      }*/
 
-public function obtenerComentariosPorIdProducto($product_id){
+   public function obtenerComentariosPorIdProducto($product_id){
         return Comentario::where('product_id', '=',$product_id)->get(); 
      } 
 

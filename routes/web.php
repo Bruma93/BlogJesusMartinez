@@ -3,6 +3,7 @@
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ComentarioController;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\Notification;
 use Illuminate\Support\Facades\Mail;
@@ -23,18 +24,22 @@ Route::get('/', function () {
     return view('home');
 });
 
-Auth::routes([/*'register'=>false,*/ 'reset'=>false]);
+Auth::routes([ 'reset'=>false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'auth'], function(){
     //Cuando el usuario inicie sesión irá a esta página
     Route::get('/', [PostController::class, 'index'])->name('home'); 
+
     Route::resource('producto', ProductoController::class)->names([
         'index' => 'producto.index',
     ]);
     Route::resource('post', PostController::class)->names([
         'index' => 'post.index',
+    ]);
+    Route::resource('comentario', ComentarioController::class)->names([
+        'index' => 'comentario.index',
     ]);
 
     Route::get('/email',function(){

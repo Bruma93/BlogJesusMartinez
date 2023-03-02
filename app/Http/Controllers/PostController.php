@@ -13,7 +13,6 @@ class PostController extends Controller
 {
     public function index()
     {
-
         //laravel permite paginar
         $datos['posts'] = Post::paginate(100);
  
@@ -87,18 +86,12 @@ class PostController extends Controller
 
         $post = Post::findOrFail($id);
 
-        return view('post.edit', compact('post'));
-        return redirect('post')->with('mensaje', 'Se ha modificiado los datos del producto '.$datosPost['nombre']);
+        return redirect('post')->with('mensaje', 'Se ha modificiado los datos del producto '.$post->title);
     }
     
 
     public function destroy($id)
     {
-        $objetoComentario = new Comentario();
-        $comentario = $objetoComentario->obtenerComentariosPorIdProducto($id);
-        //dd($comentario);
-        
-        Comentario::destroy($comentario[0]->id);
         Post::destroy($id);
         
         return redirect('post')->with('mensaje', 'Se ha eliminado el producto #' . $id);

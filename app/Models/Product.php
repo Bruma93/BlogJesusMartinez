@@ -26,19 +26,19 @@ class Product extends Model
         return Product::All(); 
      }
 
-     public function obtenerProductoPorID(){
-        return Product::find('id'); 
+     public function obtenerProductoPorID($id){
+      return Product::where('id', '=',$id)->get();
      }
 
-     public function obtenerProductoPorIdVendedor(){
-        return Product::find('id_seller'); 
+     public function obtenerProductoPorIdVendedor($seller_id){
+      return Product::where('seller_id', '=',$seller_id)->get();
      }
 
      public function user(){
         return $this->belongsTo(User::class);
       }
 
-      /*public function comentario(){
+      public function comentario(){
          return $this->hasMany(Comentario::class);
-       }*/
+      }
 }

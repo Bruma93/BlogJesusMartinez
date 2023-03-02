@@ -1,20 +1,30 @@
 @extends('layouts.app')
+@section('scripts')
+    <link href="//cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="//cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js" ></script>
+    <script src=" //cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
+
+@endsection
 
 @section('content')
 <div class="container">
-    <h2>Datos de producto</h2>
+    @if (Session::has('mensaje'))
+        <br>
+        <div class="alert alert-success">
+            {{ Session::get('mensaje') }}
+        </div>
+    @endif
+    <div class="d-flex justify-content-between">
+        <h2>Listado de Comentarios</h2>
+        <div class="d-flex">
+            <a href="{{ url('comentario/create') }}" class="btn btn-info me-3">Registrar Comentario</a>
+            <a href="{{ url('producto') }}" class="btn btn-secondary me-3">Listado de Productos</a>
+            <a href="{{ url('post') }}" class="btn btn-secondary">Listado de Posts</a>
+
+        </div>
+    </div>
     <hr>
-    {{ $producto->nombre }}
-    <br>
-    Descripción: {{ $producto->description }}
-    <br>
-    Cantidad: {{ $producto->quantity}}
-    <br>
-    Estado: {{ $producto->status}}
-    <br>
-    Id del vendendor: {{ $producto->seller_id}}
-    <br>
-    Comentarios:
     <table class="table data-table text-white">
         <thead>
             <tr>
@@ -48,9 +58,7 @@
             
         </tbody>
     </table>
-    <a href="{{ url('producto') }}" class="btn btn-primary me-3">volver</a>
-    <a href="{{ url('comentario/create') }}" class="btn btn-info">Registrar Comentario</a>
-
+    {!! $comentarios->links() !!}
 
 </div>
 @endsection
@@ -61,3 +69,4 @@
     $('.data-table').DataTable();
 });
 </script>
+@endsection

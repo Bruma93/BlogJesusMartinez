@@ -18,7 +18,11 @@
 
     <div class="d-flex justify-content-between">
         <h2>Listado de productos</h2>
-        <a href="{{ url('producto/create') }}" class="btn btn-info">Registrar Producto</a>
+        <div class="d-flex">
+            <a href="{{ url('producto/create') }}" class="btn btn-info me-3">Registrar Producto</a>
+            <a href="{{ url('post') }}" class="btn btn-secondary">Listado Posts</a>
+
+        </div>
     </div>
     <hr>
     <table class="table data-table text-white">
@@ -58,7 +62,7 @@
             
         </tbody>
     </table>
-    <!-- {!! $productos->links() !!} -->
+   {!! $productos->links() !!}
 
 </div>
 @endsection

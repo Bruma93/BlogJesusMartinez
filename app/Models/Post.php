@@ -21,12 +21,12 @@ class Post extends Model
         return Post::All(); 
      }
 
-     public function obtenerPostsPorID(){
-        return post::find('id'); 
+     public function obtenerPostsPorID($id){
+        return Post::where('id', '=' ,$id)->get();
      }
 
-     public function obtenerPostPorIdUser(){
-        return Post::find('user_id'); 
+     public function obtenerPostPorIdUser($user_id){
+        return Post::where('user_id', '=',$user_id)->get();
      }
 
      // Obtener el usuario al que peretence este post
@@ -34,7 +34,4 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-/*    public function comentarios(){
-        return $this->hasMany(Comentario::class);
-    }*/
 }

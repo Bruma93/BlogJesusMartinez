@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\V1\AuthController;
-use App\Http\Controllers\V1\PostsApiController;
+use App\Http\Controllers\V1\PostApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,15 +29,14 @@ Route::prefix('v1')->group(function(){
     //Todo lo que haya en este grupo requiere autnticación del usuario
     Route::post('logout',[AuthController::class, 'logout']);
 
-
     Route::post('get-user',[AuthController::class, 'getUser']);
 
-    Route::get('post', [PostsApiController::class, 'index']);
+    Route::get('post', [PostApiController::class, 'index']);
 
-    Route::get('post/{id}', [PostsApiController::class, 'show']);
+    Route::get('post/{id}', [PostApiController::class, 'show']);
 
-    Route::post('post', [PostsApiController::class, 'store']);
+    Route::post('post', [PostApiController::class, 'store']);
 
-    Route::put('post/{id}', [PostsApiController::class, 'update']);
+    Route::put('post/{id}', [PostApiController::class, 'update']);
     });
 });
