@@ -31,12 +31,5 @@ Route::prefix('v1')->group(function(){
 
     Route::post('get-user',[AuthController::class, 'getUser']);
 
-    Route::get('post', [PostApiController::class, 'index']);
-
-    Route::get('post/{id}', [PostApiController::class, 'show']);
-
-    Route::post('post', [PostApiController::class, 'store']);
-
-    Route::put('post/{id}', [PostApiController::class, 'update']);
     });
 });

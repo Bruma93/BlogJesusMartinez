@@ -42,7 +42,7 @@ class ComentarioController extends Controller
         Comentario::insert($datosComentario);
 
         //return dd($datosProductos);
-        return redirect('comentario')->with('mensaje', 'Se ha creado un comentario');
+        return redirect('producto')->with('mensaje', 'Se ha creado un comentario');
     }
 
  
@@ -83,14 +83,15 @@ class ComentarioController extends Controller
 
         $comentario = Comentario::findOrFail($id);
 
-        return redirect('comentario')->with('mensaje', 'Se ha modificiado los datos del comentario '.$comentario->id);
+        return redirect('producto/'.$comentario->product_id)->with('mensaje', 'Se ha modificiado los datos del comentario '.$comentario->id);
     
     }
 
     public function destroy($id)
     {
+        $comentario = Comentario::findOrFail($id);
         Comentario::destroy($id);
         
-        return redirect('comentario')->with('mensaje', 'Se ha eliminado el producto #' . $id);
+        return redirect('producto/'.$comentario->product_id)->with('mensaje', 'Se ha eliminado el producto #' . $id);
     }
 }

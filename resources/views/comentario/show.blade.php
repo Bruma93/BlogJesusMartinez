@@ -12,7 +12,7 @@
     <br>
     Id del producto: {{ $comentario->product_id }}
     <br>
-    <a href="{{ url('comentario') }}">volver</a>
+    <a href="{{ url('producto') }}">volver</a>
 
 </div>
 @endsection
